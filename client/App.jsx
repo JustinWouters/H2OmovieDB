@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 // whenever it is a normal export we MUST use curly braces
 import Movie from './components/Movie';
 import './stylesheets/styles.scss';
-import bg from './movie-bg.jpeg';
+//import bg from './movie-bg.jpeg';
 
 /* Attempt to hide key getting from process.env
  
@@ -44,11 +44,11 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&que
 function App() {
   // const movieList = ['1', '2', '3'];
 
-  // By default we have an empty array of no movies, and we will set the movies when we use the API. For this we need to use the useEffect React Hook and call the API from inside it.
-
   // State
   const [movieList, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+
+  // By default we have an empty array of no movies, and we will set the movies when we use the API. For this we need to use the useEffect React Hook and call the API from inside it.
 
   // Displays Featured Movies on Page Load
   useEffect(() => {
@@ -61,7 +61,10 @@ function App() {
     fetch(FEATURED_MOVIES_API)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(
+          data.results[0],
+          'this is your data.results from GetMovies API!'
+        );
         setMovies(data.results);
       });
   };
@@ -70,7 +73,15 @@ function App() {
     event.preventDefault();
 
     if (searchTerm) {
-      getMovies(SEARCH_API + searchTerm);
+      fetch(SEARCH_API + searchTerm)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(
+            data.results[0],
+            'this is your data.results from HandleOnSubmit function!'
+          );
+          setMovies(data.results);
+        });
       setSearchTerm('');
     }
   };
@@ -79,16 +90,18 @@ function App() {
     setSearchTerm(event.target.value);
   };
 
-  useEffect(() => {
-    if (searchTerm) {
-      fetch(SEARCH_API + searchTerm)
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data);
-          setMovies(data.results);
-        });
-    }
-  }, [searchTerm]);
+  // useEffect(() => {
+  //   if (searchTerm) {
+  //     fetch(SEARCH_API + searchTerm)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         // console.log(data);
+  //         setMovies(data.results);
+  //       });
+  //   }
+  // }, [searchTerm]);
+
+  //--- Watchlist Button Functionality ---
 
   return (
     <>
@@ -101,12 +114,10 @@ function App() {
             value={searchTerm}
             onChange={handleOnChange}
           />
+          <button className="my-watchlist">My Watchlist</button>
         </header>
       </form>
-      <div
-        className="movie-container"
-        style={{ backgroundImage: `url(${bg})` }}
-      >
+      <div className="movie-container">
         {movieList.length > 0 &&
           movieList.map((movie) => <Movie key={movie.id} {...movie} />)}
       </div>

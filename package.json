@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot --progress --color\" \"cross-env NODE_ENV=test  nodemon ./server/server.js\"",
-    "build": "cross-env NODE_ENV=production webpack build"
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot --progress --color\" \"cross-env NODE_ENV=test  nodemon server/server.js\"",
+    "build": "cross-env NODE_ENV=production webpack build",
+    "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",

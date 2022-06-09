@@ -40,6 +40,10 @@ module.exports = {
         target: 'http://localhost:3000',
         secure: false,
       },
+      '/watchlist': {
+        target: 'http://localhost:3000',
+        secure: false,
+      },
     },
 
     watchFiles: ['client'],

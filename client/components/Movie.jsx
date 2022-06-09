@@ -51,6 +51,33 @@ function Movie({
     else return 'red';
   };
 
+  // add to watchlist onclick handler
+  const onClickHandler = () => {
+    fetch('/watchlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title,
+        genres: genreName(genre_ids),
+        rating: vote_average,
+        releaseYear: release_date.slice(0, 4),
+        summary: overview,
+        posterImg: poster_path,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        setMovies(data.results);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert('Error with adding movie to watchlist: ' + err.message);
+      });
+
+    // add this later
+  };
+
   return (
     <div className="movie">
       <img
@@ -68,6 +95,9 @@ function Movie({
         </span>
       </div>
       <div className="movie-overview">
+        <button className="addToWatchlistButton" onClick={onClickHandler}>
+          Add To My Watchlist
+        </button>
         <h2>Movie Info</h2>
         <h3>Genres:</h3>
         <p>{genres}</p>
