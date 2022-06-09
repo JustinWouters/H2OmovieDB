@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // will tell server to load anything in file called .env -> into an environment variable
 require('dotenv').config();
 
-console.log(process.env, 'this is my process env');
+//console.log(process.env, 'this is my process env');
 
 mongoose.connect(
   process.env.NODE_ENV === 'test'
@@ -16,7 +16,7 @@ mongoose.connect(
   }
 );
 
-mongoose.connect.once('open', () => {
+mongoose.connection.once('open', () => {
   console.log(`Connected to Database ${process.env.NODE_ENV}`);
 });
 
