@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 // whenever it is a normal export we MUST use curly braces
 import Movie from './components/Movie';
 import './stylesheets/styles.scss';
-import bg from './assets/footer-bg.jpg';
+import bg from './movie-bg.jpeg';
 
 /* Attempt to hide key getting from process.env
  
@@ -109,7 +109,6 @@ function App() {
       >
         {movieList.length > 0 &&
           movieList.map((movie) => <Movie key={movie.id} {...movie} />)}
-        <h1>Hello World! {new Date().toString()}</h1>
       </div>
     </>
   );
