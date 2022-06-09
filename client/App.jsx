@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 // whenever it is a normal export we MUST use curly braces
 import Movie from './components/Movie';
 import './stylesheets/styles.scss';
-import bg from './assets/moviesBG.jpg';
+import bg from './assets/footer-bg.jpg';
 
 /* Attempt to hide key getting from process.env
  
