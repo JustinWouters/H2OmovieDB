@@ -85,6 +85,18 @@ function Watchlist() {
 
   return (
     <>
+      <form onSubmit={handleOnSubmit}>
+        <header>
+          <input
+            className="search-bar"
+            type="text"
+            placeholder="Search Movies..."
+            value={searchTerm}
+            onChange={handleOnChange}
+          />
+          <button className="my-watchlist">My Watchlist</button>
+        </header>
+      </form>
       <div className="watchlist">
         {watchlist.length > 0 &&
           watchlist.map((movie) => <Movie key={movie.id} {...movie} />)}
