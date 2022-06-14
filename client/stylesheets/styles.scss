@@ -26,6 +26,7 @@ header {
   display: flex;
   padding: 1rem;
   justify-content: space-between;
+  color: $orange;
 }
 
 .search-bar {
@@ -50,7 +51,7 @@ header {
 
 .movie {
   background-color: $darkGrey;
-  width: 400px;
+  width: 300px;
   margin: 1.25rem;
   border-radius: 1rem;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.75);

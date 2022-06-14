@@ -22,6 +22,8 @@ console.log('hello justin from App.jsx');
 console.log('--------------------------------');
 
 /*
+https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=2fe6af2ee1ae842b08d3ad9730cc83a9&page=1
+
 const API_URL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${KEY}&page=1`;
 
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
@@ -114,6 +116,7 @@ function App() {
             value={searchTerm}
             onChange={handleOnChange}
           />
+          <h1>MovieFinder</h1>
           <button className="my-watchlist">My Watchlist</button>
         </header>
       </form>
